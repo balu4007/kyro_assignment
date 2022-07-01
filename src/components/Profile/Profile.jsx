@@ -1,44 +1,50 @@
 import { useFormik } from "formik";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { AsyncStatus } from "../../Constants";
+import { AsyncStatus, ID } from "../../Constants";
 import { useGetUserProfile } from "../../hooks/useGetUserProfile";
-import { userInitialValues, userValidationSchema } from "../helper";
+import { useUpdateUserProfile } from "../../hooks/useUpdateUserProfile";
+import {
+  formatedUserData,
+  getformatedUpdatedUserData,
+  userInitialValues,
+  userValidationSchema,
+} from "../helper";
 import Loader from "../Loader";
 import EditProfile from "./EditProfile";
 
 function Profile() {
   const [initailData, setInitailData] = useState(userInitialValues);
   const { getUserProfile, userData } = useGetUserProfile();
+  const { UpdateUserProfile, updateduserData } = useUpdateUserProfile();
   useEffect(() => {
-    getUserProfile("62b9b1ce08bb8e6bf8c1a0d9");
+    getUserProfile(ID);
   }, []);
+
   useEffect(() => {
     if (userData.status === AsyncStatus.SUCCESS) {
       setInitailData({
-        _id: userData.data?._id,
-        first_name: userData.data?.first_name,
-        last_name: userData.data?.last_name || "",
-        display_name: userData.data?.display_name || "",
-        email: userData.data?.email || "",
-        phone_home:
-          userData.data?.phone?.find((obj) => obj?.type === "home")?.number ||
-          "",
-        phone_office:
-          userData.data?.phone?.find((obj) => obj?.type === "office")?.number ||
-          "",
-        primary_location: userData.data?.primary_location || "",
+        ...formatedUserData(userData.data),
       });
     } else if (userData.status === AsyncStatus.ERROR) {
       console.log(userData.error?.detail);
     }
   }, [userData]);
+
+  useEffect(() => {
+    if (updateduserData.status === AsyncStatus.SUCCESS) {
+      setInitailData(userFormik.values);
+    } else if (updateduserData.status === AsyncStatus.ERROR) {
+      console.log(updateduserData.error?.detail);
+    }
+  }, [updateduserData]);
+
   const userFormik = useFormik({
     enableReinitialize: true,
     initialValues: initailData,
     validationSchema: userValidationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      UpdateUserProfile(ID, getformatedUpdatedUserData(values));
     },
   });
   return (
@@ -50,7 +56,10 @@ function Profile() {
 
       <h4>My Profile</h4>
       <EditProfile userFormik={userFormik} />
-      {userData.status === AsyncStatus.LOADING ? <Loader /> : null}
+      {userData.status === AsyncStatus.LOADING ||
+      updateduserData.status === AsyncStatus.LOADING ? (
+        <Loader />
+      ) : null}
     </>
   );
 }
