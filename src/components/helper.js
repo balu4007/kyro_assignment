@@ -35,6 +35,7 @@ export const formikProps = (name, formik) => ({
   onBlur: formik.handleBlur,
   error: formik.touched[name] && Boolean(formik.errors[name]),
   helperText: formik.touched[name] ? formik.errors[name] : "",
+  fullWidth: true,
 });
 
 export function formatedUserData(userData) {

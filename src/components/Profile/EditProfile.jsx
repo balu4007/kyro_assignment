@@ -1,4 +1,4 @@
-import { Button, Grid, Stack, TextField } from "@mui/material";
+import { Button, Grid, InputAdornment, Stack, TextField } from "@mui/material";
 import moment from "moment";
 import React from "react";
 import { formikProps } from "../helper";
@@ -8,6 +8,12 @@ import {
   HeaderDiv,
   LeftContainer,
 } from "./styled.componets";
+import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
+import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
+import AddLocationOutlinedIcon from "@mui/icons-material/AddLocationOutlined";
+import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
+
 function EditProfile({ userFormik }) {
   return (
     <EditProfileContainer>
@@ -27,66 +33,108 @@ function EditProfile({ userFormik }) {
             <Grid container rowSpacing={2} columnSpacing={2}>
               <Grid item xs={6}>
                 <TextField
-                  fullWidth
                   id="first_name"
                   label="First Name"
                   variant="outlined"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PermIdentityOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   {...formikProps("first_name", userFormik)}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  fullWidth
                   id="last_name"
                   label="Last Name"
                   variant="outlined"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PermIdentityOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   {...formikProps("last_name", userFormik)}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  fullWidth
                   id="display_name"
                   label="Display Name"
                   variant="outlined"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <AccountBoxOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   {...formikProps("display_name", userFormik)}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  fullWidth
                   id="email"
                   label="Email"
                   variant="outlined"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <MailOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   {...formikProps("email", userFormik)}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  fullWidth
                   id="phone_home"
                   label="Phone Home"
                   variant="outlined"
                   type="number"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PhoneOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   {...formikProps("phone_home", userFormik)}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  fullWidth
                   id="phone_office"
                   label="Phone Office"
                   variant="outlined"
                   type="number"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PhoneOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   {...formikProps("phone_office", userFormik)}
                 />
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  fullWidth
                   id="primary_location"
                   label="Location"
                   variant="outlined"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <AddLocationOutlinedIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   {...formikProps("primary_location", userFormik)}
                 />
               </Grid>
