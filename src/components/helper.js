@@ -37,9 +37,13 @@ export function formatedUserData(userData) {
     display_name: userData?.display_name || "",
     email: userData?.email || "",
     phone_home:
-      userData?.phone?.find((obj) => obj?.type === "home")?.number || "",
+      userData?.phone
+        ?.find((obj) => obj?.type === "home")
+        ?.number?.toString() || "",
     phone_office:
-      userData?.phone?.find((obj) => obj?.type === "office")?.number || "",
+      userData?.phone
+        ?.find((obj) => obj?.type === "office")
+        ?.number?.toString() || "",
     primary_location: userData?.primary_location || "",
   };
 }

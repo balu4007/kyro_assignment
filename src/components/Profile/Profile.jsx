@@ -1,6 +1,5 @@
 import { Alert, Snackbar } from "@mui/material";
 import { useFormik } from "formik";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { AsyncStatus, ID } from "../../Constants";
 import { useGetUserProfile } from "../../hooks/useGetUserProfile";
@@ -13,7 +12,8 @@ import {
 } from "../helper";
 import Loader from "../Loader";
 import EditProfile from "./EditProfile";
-import { HeaderDiv, LeftContainer } from "./styled.componets";
+import { ViewProfile } from "./ProfileView";
+import { ProfileContainer } from "./styled.componets";
 
 function Profile() {
   const [initailData, setInitailData] = useState(userInitialValues);
@@ -57,21 +57,16 @@ function Profile() {
   });
   return (
     <>
-      <LeftContainer>
-        <HeaderDiv>
-          <h4>Good Morning, Adam</h4>
-          {moment().format("MMMM DD, YYYY")}
-        </HeaderDiv>
-        <h4>My Profile</h4>
-      </LeftContainer>
-
-      <EditProfile userFormik={userFormik} />
+      <ProfileContainer>
+        <EditProfile userFormik={userFormik} />
+        <ViewProfile userFormik={userFormik} />
+      </ProfileContainer>
       {userData.status === AsyncStatus.LOADING ||
       updateduserData.status === AsyncStatus.LOADING ? (
         <Loader />
       ) : null}
-
       <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={error.iserror}
         autoHideDuration={3000}
         onClose={() => {
@@ -83,7 +78,7 @@ function Profile() {
         </Alert>
       </Snackbar>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={isProfileCreated}
         autoHideDuration={3000}
         onClose={() => {
