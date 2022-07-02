@@ -31,6 +31,6 @@ export const ViewProfileContainer = styled.div`
 
 export const ProfileBodyContainer = styled(Stack)`
   padding-top: 100px;
-  background-color: #e7ebf0;
+  background-color: #f2f3f5;
   align-items: center;
 `;
