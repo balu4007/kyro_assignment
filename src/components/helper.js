@@ -1,4 +1,12 @@
 import * as Yup from "yup";
+import HomeIcon from "@mui/icons-material/Home";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
+import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
+import MessageRoundedIcon from "@mui/icons-material/MessageRounded";
+import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
+import CorporateFareRoundedIcon from "@mui/icons-material/CorporateFareRounded";
+import SettingsIcon from "@mui/icons-material/Settings";
+
 export const userInitialValues = {
   _id: "",
   first_name: "",
@@ -66,4 +74,25 @@ export function getformatedUpdatedUserData(values) {
     ],
     primary_location: values?.primary_location || "",
   };
+}
+
+export function getIcon(index) {
+  switch (index) {
+    case 0:
+      return <HomeIcon />;
+    case 1:
+      return <AccountTreeIcon />;
+    case 2:
+      return <GridViewRoundedIcon />;
+    case 3:
+      return <MessageRoundedIcon />;
+    case 4:
+      return <ArticleRoundedIcon />;
+    case 5:
+      return <CorporateFareRoundedIcon />;
+    case 6:
+      return <SettingsIcon />;
+    default:
+      break;
+  }
 }

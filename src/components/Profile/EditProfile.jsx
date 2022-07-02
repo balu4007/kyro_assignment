@@ -13,12 +13,12 @@ function EditProfile({ userFormik }) {
     <EditProfileContainer>
       <LeftContainer>
         <HeaderDiv>
-          <h4>Good Morning, {userFormik.values["first_name"]}</h4>
+          <h4>Good Morning, Adam</h4>
           {moment().format("MMMM DD, YYYY")}
         </HeaderDiv>
         <h4>My Profile</h4>
       </LeftContainer>
-      <LeftContainer maxWidth="sm">
+      <LeftContainer maxWidth="md">
         <EditProfileCard>
           <form
             onSubmit={userFormik.handleSubmit}
@@ -27,6 +27,7 @@ function EditProfile({ userFormik }) {
             <Grid container rowSpacing={2} columnSpacing={2}>
               <Grid item xs={6}>
                 <TextField
+                  fullWidth
                   id="first_name"
                   label="First Name"
                   variant="outlined"
@@ -35,6 +36,7 @@ function EditProfile({ userFormik }) {
               </Grid>
               <Grid item xs={6}>
                 <TextField
+                  fullWidth
                   id="last_name"
                   label="Last Name"
                   variant="outlined"
@@ -43,6 +45,7 @@ function EditProfile({ userFormik }) {
               </Grid>
               <Grid item xs={6}>
                 <TextField
+                  fullWidth
                   id="display_name"
                   label="Display Name"
                   variant="outlined"
@@ -51,6 +54,7 @@ function EditProfile({ userFormik }) {
               </Grid>
               <Grid item xs={6}>
                 <TextField
+                  fullWidth
                   id="email"
                   label="Email"
                   variant="outlined"
@@ -59,6 +63,7 @@ function EditProfile({ userFormik }) {
               </Grid>
               <Grid item xs={6}>
                 <TextField
+                  fullWidth
                   id="phone_home"
                   label="Phone Home"
                   variant="outlined"
@@ -68,6 +73,7 @@ function EditProfile({ userFormik }) {
               </Grid>
               <Grid item xs={6}>
                 <TextField
+                  fullWidth
                   id="phone_office"
                   label="Phone Office"
                   variant="outlined"
@@ -77,6 +83,7 @@ function EditProfile({ userFormik }) {
               </Grid>
               <Grid item xs={6}>
                 <TextField
+                  fullWidth
                   id="primary_location"
                   label="Location"
                   variant="outlined"
